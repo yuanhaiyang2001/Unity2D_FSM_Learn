@@ -1,0 +1,11 @@
+Library/
+.vs/
+.plastic/
+Logs/
+obj/
+UserSettings/
+Packages/
+*.sln
+*.DS_Store
+*.csproj
+*.vsconfig
