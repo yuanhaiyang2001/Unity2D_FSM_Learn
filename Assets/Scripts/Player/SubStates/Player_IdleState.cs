@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_RunState : GroundedStates
+public class Player_IdleState : GroundedStates
 {
-    public Player_RunState(Player player, PlayerData playerData, PlayerStateMachine stateMachine, string animName) : base(player, playerData, stateMachine, animName)
+    public Player_IdleState(Player player, PlayerData playerData, PlayerStateMachine stateMachine, string animName) : base(player, playerData, stateMachine, animName)
     {
+
     }
 
     public override void DoChecks()
@@ -16,6 +17,7 @@ public class Player_RunState : GroundedStates
     public override void Enter()
     {
         base.Enter();
+        player.SetVelocityX(0);
     }
 
     public override void Exit()
@@ -26,6 +28,10 @@ public class Player_RunState : GroundedStates
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if(xInput!= 0.0f)
+        {
+            stateMachine.ChangeState(player.runState);
+        }
     }
 
     public override void PhysicsUpdate()

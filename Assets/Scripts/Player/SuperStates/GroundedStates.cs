@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundedStates : PlayerState
 {
-    protected Vector2 moveInput;
+    protected int xInput;
     public GroundedStates(Player player, PlayerData playerData, PlayerStateMachine stateMachine, string animName) : base(player, playerData, stateMachine, animName)
     {
     }
@@ -27,7 +27,7 @@ public class GroundedStates : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        moveInput = player.inputHandler.MovementInput;
+        xInput = player.inputHandler.NormalizedInputX;
     }
 
     public override void PhysicsUpdate()

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_IdleState : GroundedStates
+public class Player_RunState : GroundedStates
 {
-    public Player_IdleState(Player player, PlayerData playerData, PlayerStateMachine stateMachine, string animName) : base(player, playerData, stateMachine, animName)
+    public Player_RunState(Player player, PlayerData playerData, PlayerStateMachine stateMachine, string animName) : base(player, playerData, stateMachine, animName)
     {
     }
 
@@ -16,6 +16,7 @@ public class Player_IdleState : GroundedStates
     public override void Enter()
     {
         base.Enter();
+        
     }
 
     public override void Exit()
@@ -26,9 +27,11 @@ public class Player_IdleState : GroundedStates
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(moveInput.x!= 0.0f)
+        player.CheckFlipCondition(xInput);
+        player.SetVelocityX(playerData.runVelocity * xInput);
+        if(xInput == 0)
         {
-            stateMachine.ChangeState(player.runState);
+            stateMachine.ChangeState(player.idleState);
         }
     }
 
