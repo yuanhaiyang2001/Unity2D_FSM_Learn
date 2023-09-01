@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundedStates : PlayerState
 {
     protected int xInput;
+    private bool JumpInput;
     public GroundedStates(Player player, PlayerData playerData, PlayerStateMachine stateMachine, string animName) : base(player, playerData, stateMachine, animName)
     {
     }
@@ -28,6 +29,11 @@ public class GroundedStates : PlayerState
     {
         base.LogicUpdate();
         xInput = player.inputHandler.NormalizedInputX;
+        JumpInput = player.inputHandler.JumpInput;
+        if (JumpInput == true)
+        {
+            stateMachine.ChangeState(player.jumpState);
+        }
     }
 
     public override void PhysicsUpdate()

@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     #region States״̬
     public PlayerState idleState { get;private set; }
     public PlayerState runState { get; private set; }
+    public PlayerState jumpState { get; private set; }
+    public PlayerState landState { get; private set; }
+    public PlayerState inAirState { get; private set; }
     #endregion
     public PlayerInputHandler inputHandler { get; private set; }
     public PlayerStateMachine StateMachine { get; private set; }
@@ -27,6 +30,9 @@ public class Player : MonoBehaviour
         StateMachine = new PlayerStateMachine();
         idleState = new Player_IdleState(this, playerData, StateMachine, "idle");
         runState = new Player_RunState(this, playerData, StateMachine, "run");
+        jumpState = new Player_JumpState(this, playerData, StateMachine, "jump");
+        inAirState = new Player_InAirState(this, playerData, StateMachine, "air");
+        landState = new Player_LandState(this, playerData, StateMachine, "land");
         
     }
     void Start()
@@ -37,7 +43,6 @@ public class Player : MonoBehaviour
         StateMachine.Initialize(idleState);
         facingDirection = 1;
     }
-
     
     void Update()
     {

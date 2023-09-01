@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_JumpState : MonoBehaviour
+public class Player_JumpState : AbilityStates
 {
-    // Start is called before the first frame update
-    void Start()
+    public Player_JumpState(Player player, PlayerData playerData, PlayerStateMachine stateMachine, string animName) : base(player, playerData, stateMachine, animName)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

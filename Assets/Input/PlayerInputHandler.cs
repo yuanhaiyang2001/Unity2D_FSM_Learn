@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     public Vector2 RawMovementInput { get; private set; }
+    public bool JumpInput { get; private set; }
     public int NormalizedInputX { get; private set; }
     public int NormalizedInputY { get; private set; }
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -20,7 +21,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-
+            JumpInput = true;
         }
         
     }
