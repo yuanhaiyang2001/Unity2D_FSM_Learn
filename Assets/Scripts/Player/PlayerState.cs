@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,10 @@ public class PlayerState
     protected PlayerData playerData;
     protected PlayerStateMachine stateMachine;
 
-    private string animName;
+    public string animName { get; private set; }
 
     protected float startTime;
+    protected bool isAnimationFinished;
 
     public PlayerState(Player player,PlayerData playerData,PlayerStateMachine stateMachine,string animName)
     {
@@ -26,6 +28,8 @@ public class PlayerState
         player.Anim.SetBool(animName, true);
         DoChecks();
         startTime = Time.time;
+        isAnimationFinished = false;
+        Debug.Log(animName);
     }
     public virtual void Exit() 
     {
@@ -40,8 +44,8 @@ public class PlayerState
     {
         DoChecks();
     }
-    public virtual void DoChecks()
-    {
+    public virtual void DoChecks(){}
+    public virtual void AnimationTrigger() { }
+    public virtual void AnimationFinishTrigger()=>isAnimationFinished = true;
 
-    }
 }
